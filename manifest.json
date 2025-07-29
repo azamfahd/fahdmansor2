@@ -1,0 +1,37 @@
+{
+  "_comment": "ملف Manifest لتطبيق الويب التقدمي (PWA) - يحدد خصائص التطبيق عند تثبيته على الهاتف",
+  "name": "مؤسسة ركن النحت - فن النحت والديكور الحديث",
+  "short_name": "ركن النحت",
+  "description": "مؤسسة متخصصة في فن النحت الحديث والديكور الإبداعي. نقدم أعمال نحت فنية متميزة وتصاميم ديكور عصرية تجمع بين الأصالة والابتكار.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#111827",
+  "theme_color": "#FBBF24",
+  "orientation": "portrait-primary",
+  "lang": "ar",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "assets/site/profile.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/site/profile.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["art", "design", "sculpture", "decoration"],
+  "screenshots": [
+    {
+      "src": "assets/site/profile.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "platform": "wide",
+      "label": "معرض أعمال النحت والديكور"
+    }
+  ]
+}

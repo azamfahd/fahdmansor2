@@ -1,0 +1,374 @@
+/**
+ * ملف CSS متقدم لموقع مؤسسة ركن النحت
+ *
+ * الغرض: تحسين الأداء والمظهر البصري للموقع
+ *
+ * المحتويات:
+ * - أنماط أساسية للمكونات الرئيسية
+ * - تأثيرات hover وانتقالات سلسة
+ * - تحسينات للتصميم المتجاوب
+ * - أنماط إمكانية الوصول
+ * - تحسينات الطباعة
+ * - حالات التحميل والأخطاء
+ *
+ * ملاحظة: يتم تحميل هذا الملف بعد Tailwind CSS لإضافة أنماط مخصصة
+ */
+
+/*
+ * أنماط أساسية للمحتوى المهم مع شفافية محسنة
+ * تستخدم لتصميم الواجهة الرئيسية (Hero Section)
+ */
+.hero-section {
+  /* خلفية متدرجة بطبقتين:
+     1. تدرج خطي قطري (135 درجة) بألوان داكنة شفافة
+     2. تدرج شعاعي ذهبي خفيف في المركز */
+  background: linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.95) 0%,
+      /* لون داكن في البداية */ rgba(30, 41, 59, 0.9) 30%,
+      /* انتقال تدريجي */ rgba(51, 65, 85, 0.85) 70%,
+      /* لون متوسط */ rgba(15, 23, 42, 0.95) 100% /* عودة للون الداكن */
+    ),
+    radial-gradient(
+      circle at center,
+      rgba(251, 191, 36, 0.05) 0%,
+      /* ذهبي خفيف في المركز */ transparent 70% /* شفاف في الأطراف */
+    );
+
+  /* إعدادات التخطيط والحجم */
+  min-height: 100vh; /* ارتفاع كامل للشاشة */
+  display: flex; /* نظام flexbox للتوسيط */
+  align-items: center; /* توسيط عمودي */
+  justify-content: center; /* توسيط أفقي */
+  position: relative; /* لوضع العناصر المطلقة بداخله */
+  overflow: hidden; /* إخفاء المحتوى الزائد */
+  backdrop-filter: blur(1px); /* تأثير ضبابي خفيف */
+}
+
+/*
+ * تحسينات إضافية للمحتوى الرئيسي
+ * حاوي للنص والعناصر داخل الواجهة الرئيسية
+ */
+.hero-content {
+  position: relative; /* لوضع العناصر الفرعية */
+  z-index: 20; /* طبقة عالية فوق الخلفية */
+  text-align: center; /* توسيط النص */
+  max-width: 1200px; /* عرض أقصى للمحتوى */
+  margin: 0 auto; /* توسيط الحاوي */
+  padding: 2rem; /* مساحة داخلية */
+}
+
+/*
+ * تحسينات إضافية للعنوان المحسنة
+ * يضيف تأثير لمعان متحرك للعنوان الرئيسي
+ */
+.hero-title-enhanced {
+  position: relative; /* لوضع العنصر الفرعي ::before */
+  display: inline-block; /* عرض كعنصر مضمن مع إمكانية التحكم بالأبعاد */
+}
+
+/*
+ * تأثير اللمعان المتحرك
+ * يضيف خط ضوئي يتحرك عبر النص
+ */
+.hero-title-enhanced::before {
+  content: ""; /* محتوى فارغ للعنصر الوهمي */
+  position: absolute; /* موضع مطلق نسبة للعنصر الأب */
+  top: 0; /* من الأعلى */
+  left: 0; /* من اليسار */
+  right: 0; /* إلى اليمين */
+  bottom: 0; /* إلى الأسفل */
+  /* تدرج خطي للمعان - شفاف ثم أبيض خفيف ثم شفاف */
+  background: linear-gradient(
+    45deg,
+    /* زاوية 45 درجة */ transparent 30%,
+    /* شفاف في البداية */ rgba(255, 255, 255, 0.1) 50%,
+    /* أبيض خفيف في الوسط */ transparent 70% /* شفاف في النهاية */
+  );
+  animation: shine 3s infinite; /* تطبيق حركة اللمعان */
+  pointer-events: none; /* عدم التفاعل مع الماوس */
+}
+
+/*
+ * حركة اللمعان - تحريك الخط الضوئي من اليسار إلى اليمين
+ */
+@keyframes shine {
+  0% {
+    transform: translateX(-100%); /* البداية: خارج الحدود اليسرى */
+  }
+  100% {
+    transform: translateX(100%); /* النهاية: خارج الحدود اليمنى */
+  }
+}
+
+/*
+ * تحسينات إضافية للخلفية الشفافة للوضوح
+ * طبقة إضافية من التدرجات لتحسين المظهر البصري
+ */
+.hero-background-overlay {
+  position: absolute; /* موضع مطلق لتغطية كامل المساحة */
+  top: 0; /* من الأعلى */
+  left: 0; /* من اليسار */
+  right: 0; /* إلى اليمين */
+  bottom: 0; /* إلى الأسفل */
+
+  /* ثلاث طبقات من التدرجات:
+     1. تدرج شعاعي ذهبي في الزاوية العلوية اليسرى
+     2. تدرج شعاعي برتقالي في الزاوية السفلية اليمنى
+     3. تدرج خطي قطري بألوان داكنة */
+  background: radial-gradient(
+      circle at 20% 30%,
+      /* دائرة في الزاوية العلوية اليسرى */ rgba(251, 191, 36, 0.08) 0%,
+      /* ذهبي خفيف في المركز */ transparent 60% /* شفاف في الأطراف */
+    ),
+    radial-gradient(
+      circle at 80% 70%,
+      /* دائرة في الزاوية السفلية اليمنى */ rgba(217, 119, 6, 0.08) 0%,
+      /* برتقالي خفيف في المركز */ transparent 60% /* شفاف في الأطراف */
+    ),
+    linear-gradient(
+      45deg,
+      /* تدرج قطري 45 درجة */ rgba(15, 23, 42, 0.3) 0%,
+      /* داكن في البداية */ transparent 30%,
+      /* شفاف */ rgba(30, 41, 59, 0.2) 50%,
+      /* داكن متوسط في الوسط */ transparent 70%,
+      /* شفاف */ rgba(51, 65, 85, 0.3) 100% /* داكن في النهاية */
+    );
+  backdrop-filter: blur(0.5px); /* تأثير ضبابي خفيف جداً */
+  z-index: 8; /* طبقة تحت المحتوى */
+}
+
+/*
+ * تحسين الصورة الخلفية للوضوح الأمثل
+ * يطبق فلاتر لتحسين مظهر الصورة الخلفية
+ */
+.hero-background-image {
+  /* فلاتر تحسين الصورة:
+     - brightness: زيادة الإضاءة بنسبة 10%
+     - contrast: زيادة التباين بنسبة 10%
+     - saturate: زيادة التشبع بنسبة 10% */
+  filter: brightness(1.1) contrast(1.1) saturate(1.1);
+  opacity: 0.95; /* شفافية 95% لإظهار الطبقات السفلية */
+  transform: scale(1.02); /* تكبير طفيف 2% */
+  transition: all 0.3s ease; /* انتقال سلس للتغييرات */
+}
+
+/*
+ * تأثير hover للصورة الخلفية
+ * يحسن المظهر عند مرور الماوس (نادر الحدوث لكن مفيد للمس)
+ */
+.hero-background-image:hover {
+  transform: scale(1.01); /* تقليل التكبير عند hover */
+  /* زيادة قيم الفلاتر عند التفاعل */
+  filter: brightness(1.15) contrast(1.15) saturate(1.15);
+}
+
+/* أنماط الأزرار المحسنة - تدرج ذهبي مع تأثيرات hover */
+.btn-primary {
+  background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  color: white;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(251, 190, 36, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(251, 190, 36, 0.685);
+}
+
+/* أنماط البطاقات المحسنة - خلفية شفافة مع blur effect */
+.card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Dark mode card styles */
+@media (prefers-color-scheme: dark) {
+  .card {
+    background: rgba(17, 24, 39, 0.95);
+    color: white;
+  }
+}
+
+/* Enhanced gallery styles */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+.gallery-item {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
+
+/* Enhanced navigation */
+.nav-link {
+  position: relative;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #fbbf24, #d97706);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Enhanced typography */
+.heading-gradient {
+  background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Enhanced animations */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideInUp 0.6s ease-out;
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(251, 191, 36, 0.6);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Enhanced responsive design */
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  .btn-primary {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Enhanced accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Enhanced focus styles */
+*:focus-visible {
+  outline: 2px solid #fbbf24;
+  outline-offset: 2px;
+  border-radius: 0.25rem;
+}
+
+/* Enhanced print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  .card {
+    background: white !important;
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+  }
+}
+
+/* Enhanced loading states */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Enhanced dark mode */
+@media (prefers-color-scheme: dark) {
+  .skeleton {
+    background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
+    background-size: 200% 100%;
+  }
+}
